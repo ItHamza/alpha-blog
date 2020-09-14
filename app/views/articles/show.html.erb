@@ -1,8 +1,21 @@
-<h1>Showing Articles</h1>
-
-<p><strong>Title: </strong><%= @article.try(:title) %></p>
-<p><strong>Description: </strong><%= @article.try(:description) %> </p>
-
-<%= link_to 'Edit', edit_article_path(@article)  %>
-<%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "are you sure?"} %>
-<%= link_to 'Return to Articles', articles_path %>
+<h1 class="text-center mt-4"> <%= @article.title %> </h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mt-4">
+        <div class="card text-center shadow mb-5">
+          <div class="card-header font-italic">
+          by Ameer Hamza
+          </div>
+          <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@article.try(:description))  %></div>
+          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info"  %>
+          <%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+          </div>
+          <div class="card-footer text-muted">
+          Created <%= time_ago_in_words(@article.created_at) %> ago,
+          Updated <%= time_ago_in_words(@article.updated_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
